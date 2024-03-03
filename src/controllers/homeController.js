@@ -16,7 +16,7 @@ let getAboutMe = (req, res) => {
     return res.render("aboutme.ejs");
 };
 
-let getCrud = (req, res) => {
+let getCRUD = (req, res) => {
     return res.render("crud.ejs");
 };
 
@@ -29,6 +29,6 @@ let postCRUD = async (req, res) => {
 module.exports = {
     getHomePage: getHomePage,
     getAboutMe: getAboutMe,
-    getCrud: getCrud,
+    getCRUD: getCRUD,
     postCRUD: postCRUD,
 };
