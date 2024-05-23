@@ -18,7 +18,14 @@ let sendSimpleEmail = async (dataSend) => {
         to: dataSend.receiverEmail, // list of receivers
         subject: "Thư xác nhận đặt lịch khám bệnh thành công! ✔", // Subject line
         // text: "Hello world?", // plain text body
-        html: `
+        html: getBodyHTMLEmail(dataSend), // html body
+    });
+};
+
+let getBodyHTMLEmail = (dataSend) => {
+    let result = "";
+    if (dataSend.language === "vi") {
+        result = `
         <h3>Xin chào ${dataSend.patientName}!</h3>
         <p>Emai này để xác nhận bạn đã thực hiện đặt lịch trên website của chúng tôi.</p>
         <p>Thông tin đặt lịch của bạn bao gồm những thông tin sau:</p>
@@ -30,10 +37,29 @@ let sendSimpleEmail = async (dataSend) => {
             <a href=${dataSend.redirectLink} target="_blank">Click Here</a>
         </div>
         <div>Xin chân thành cảm ơn!</div>
-        `, // html body
-    });
+        `;
+    }
+
+    if (dataSend.language === "en") {
+        result = `
+        <h3>Hello ${dataSend.patientName}!</h3>
+        <p>This email is to confirm that you have made an appointment on our website.</p>
+        <p>Your booking information includes the following information:</p>
+        <div><b>Time: ${dataSend.time}</b></div>
+        <div><b>Doctor: ${dataSend.doctorName}</b></div>
+
+        <p>Please review the above information and confirm by clicking on the following link to complete the medical appointment booking procedure.</p>
+        <div>
+            <a href=${dataSend.redirectLink} target="_blank">Click Here</a>
+        </div>
+        <div>Thank you very much!</div>
+        `;
+    }
+
+    return result;
 };
 
 module.exports = {
     sendSimpleEmail: sendSimpleEmail,
+    getBodyHTMLEmail: getBodyHTMLEmail,
 };

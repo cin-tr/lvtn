@@ -8,7 +8,13 @@ import emailService from "./emailService";
 let postBookAppointment = (data) => {
     return new Promise(async (resolve, reject) => {
         try {
-            if (!data.email || !data.doctorId || !data.timeType || !data.date) {
+            if (
+                !data.email ||
+                !data.doctorId ||
+                !data.timeType ||
+                !data.date ||
+                !data.fullName
+            ) {
                 resolve({
                     errCode: 1,
                     errMessage: "Missing Parameter!",
@@ -16,9 +22,10 @@ let postBookAppointment = (data) => {
             } else {
                 await emailService.sendSimpleEmail({
                     receiverEmail: data.email,
-                    patientName: "Hoai Trinh",
-                    time: "8:00 - 9:00 Chu Nhat 23/05/2024",
-                    doctorName: "Nguyen Thi A",
+                    patientName: data.fullName,
+                    time: data.timeString,
+                    doctorName: data.doctorName,
+                    language: data.language,
                     redirectLink: "https://bookingcare.vn/",
                 });
 
