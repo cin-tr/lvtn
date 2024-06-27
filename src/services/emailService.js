@@ -14,7 +14,7 @@ let sendSimpleEmail = async (dataSend) => {
 
     // send mail with defined transport object
     let info = await transporter.sendMail({
-        from: '"Chin 👻" <hoaitrinh2106@gmail.com>', // sender address
+        from: '"YourHealth 🏥" <hoaitrinh2106@gmail.com>', // sender address
         to: dataSend.receiverEmail, // list of receivers
         subject: "Thư xác nhận đặt lịch khám bệnh thành công! ✔", // Subject line
         // text: "Hello world?", // plain text body
@@ -98,7 +98,7 @@ let sendAttachment = async (dataSend) => {
             });
 
             let info = await transporter.sendMail({
-                from: '"Chin 👻" <hoaitrinh2106@gmail.com>', // sender address
+                from: '"YourHealth 🏥" <hoaitrinh2106@gmail.com>', // sender address
                 to: dataSend.email, // list of receivers
                 subject: "Kết quả khám bệnh! ✔", // Subject line
                 // text: "Hello world?", // plain text body
