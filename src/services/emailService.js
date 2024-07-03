@@ -4,8 +4,8 @@ import nodemailer from "nodemailer";
 let sendSimpleEmail = async (dataSend) => {
     const transporter = nodemailer.createTransport({
         host: "smtp.gmail.com",
-        port: 587,
-        secure: false, // Use `true` for port 465, `false` for all other ports
+        port: 465,
+        secure: true, // Use `true` for port 465, `false` for all other ports
         auth: {
             user: process.env.EMAIL_APP,
             pass: process.env.EMAIL_APP_PASSWORD,
@@ -89,8 +89,8 @@ let sendAttachment = async (dataSend) => {
         try {
             let transporter = nodemailer.createTransport({
                 host: "smtp.gmail.com",
-                port: 587,
-                secure: false, // Use `true` for port 465, `false` for all other ports
+                port: 465,
+                secure: true, // Use `true` for port 465, `false` for all other ports
                 auth: {
                     user: process.env.EMAIL_APP,
                     pass: process.env.EMAIL_APP_PASSWORD,
