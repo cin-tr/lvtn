@@ -129,9 +129,38 @@ let getListPatientForDoctor = async (req, res) => {
     }
 };
 
+let getActionListPatientForDoctor = async (req, res) => {
+    try {
+        let infor = await doctorService.getActionListPatientForDoctor(
+            req.query.doctorId,
+            req.query.date
+        );
+        return res.status(200).json(infor);
+    } catch (e) {
+        console.log(e);
+        return res.status(200).json({
+            errCode: -1,
+            errMessage: "Error from server!",
+        });
+    }
+};
+
 let sendRemedy = async (req, res) => {
     try {
         let infor = await doctorService.sendRemedy(req.body);
+        return res.status(200).json(infor);
+    } catch (e) {
+        console.log(e);
+        return res.status(200).json({
+            errCode: -1,
+            errMessage: "Error from server!",
+        });
+    }
+};
+
+let sendCancel = async (req, res) => {
+    try {
+        let infor = await doctorService.sendCancel(req.body);
         return res.status(200).json(infor);
     } catch (e) {
         console.log(e);
@@ -152,5 +181,7 @@ module.exports = {
     getExtraInforDoctorById: getExtraInforDoctorById,
     getProfileDoctorById: getProfileDoctorById,
     getListPatientForDoctor: getListPatientForDoctor,
+    getActionListPatientForDoctor: getActionListPatientForDoctor,
     sendRemedy: sendRemedy,
+    sendCancel: sendCancel,
 };
